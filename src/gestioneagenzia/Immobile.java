@@ -1,5 +1,6 @@
 package gestioneagenzia;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Vector;
@@ -130,11 +131,16 @@ public class Immobile {
 		
 		if(nuovoProprietario!=null){
 			this.nuovoProprietario = nuovoProprietario;
+			this.setDataVendita(LocalDateTime.now());
 		}
 		else 
 			throw new IllegalArgumentException("nuovoProprietario==null");
 		
 	}
+	public void rimettiInVendita(){
+		this.nuovoProprietario=null;
+	}
+	
 	public Vector<Offerta> getOfferte() {
 		return offerte;
 	}

@@ -23,6 +23,14 @@ public class Offerta {
 	public double getImporto() {
 		return importo;
 	}
+	
+	public void setImporto(double importo){
+		if(importo>=0){
+			this.importo=importo;
+		}
+		else
+			throw new IllegalArgumentException("importo<0");
+	}
 
 	public Acquirente getAcquirente() {
 		return acquirente;
