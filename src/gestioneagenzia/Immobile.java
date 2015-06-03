@@ -1,6 +1,5 @@
 package gestioneagenzia;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Vector;
@@ -17,6 +16,7 @@ public class Immobile {
 	private Venditore venditore;
 	private Acquirente nuovoProprietario;
 	private Vector<Offerta> offerte;
+	private Offerta offertaAccettata;
 	
 	
 	
@@ -131,7 +131,6 @@ public class Immobile {
 		
 		if(nuovoProprietario!=null){
 			this.nuovoProprietario = nuovoProprietario;
-			this.setDataVendita(LocalDateTime.now());
 		}
 		else 
 			throw new IllegalArgumentException("nuovoProprietario==null");
@@ -152,6 +151,32 @@ public class Immobile {
 			throw new IllegalArgumentException("offerta == null");
 	}
 	
+	public Offerta getOffertaAccettata() {
+		return offertaAccettata;
+	}
+	
+	public Offerta getOffertaMigliore(){
+		Offerta miglioreOfferta;
+		miglioreOfferta=offerte.elementAt(0);
+		for(int i=1;i<offerte.size();i++){
+			if(miglioreOfferta.getCostoPonderato()<offerte.elementAt(i).getCostoPonderato()){
+				miglioreOfferta=offerte.elementAt(i);
+			}
+		}
+		return miglioreOfferta;
+	}
+
+	public void setOffertaAccettata(Offerta o) {
+		if(o!=null){
+			this.offertaAccettata = o;
+		    this.setDataVendita(LocalDateTime.now());
+		    this.setNuovoProprietario(o.getAcquirente());
+		}
+		else
+			throw new IllegalArgumentException("Offerta=null");
+			
+	}
+
 	public boolean isInVendita(){
 		
 		Boolean disponibile = false;
@@ -160,6 +185,18 @@ public class Immobile {
 		}
 		return disponibile;
 	}
+
+	@Override
+	public String toString() {
+		return "Immobile [area=" + area + ", prezzoAlMetroQuadrato="
+				+ prezzoAlMetroQuadrato + ", numeroVani=" + numeroVani
+				+ ", localita=" + localita + ", percentuale=" + percentuale
+				+ ", dataMessaInVendita=" + dataMessaInVendita
+				+ ", dataVendita=" + dataVendita + ", venditore=" + venditore
+				+ ", nuovoProprietario=" + nuovoProprietario + ", offerte="
+				+ offerte + "]";
+	}
+	
 	
 	
 

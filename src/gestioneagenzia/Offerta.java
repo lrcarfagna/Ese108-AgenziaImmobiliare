@@ -2,12 +2,12 @@ package gestioneagenzia;
 
 public class Offerta {
 	
-	private double importo;
+	private double costoProposto;
 	private Acquirente acquirente;
 	
 	public Offerta(double importo, Acquirente acquirente) {
 		if(importo>0){
-			this.importo = importo;
+			this.costoProposto = importo;
 		}
 		else
 			throw new IllegalArgumentException("importo<=0");
@@ -21,12 +21,12 @@ public class Offerta {
 	}
 
 	public double getImporto() {
-		return importo;
+		return costoProposto;
 	}
 	
 	public void setImporto(double importo){
 		if(importo>=0){
-			this.importo=importo;
+			this.costoProposto=importo;
 		}
 		else
 			throw new IllegalArgumentException("importo<0");
@@ -34,6 +34,10 @@ public class Offerta {
 
 	public Acquirente getAcquirente() {
 		return acquirente;
+	}
+	
+	public double getCostoPonderato(){
+		return costoProposto * acquirente.getAffidabilita();
 	}
 	
 	

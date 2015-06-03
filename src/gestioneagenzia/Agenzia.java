@@ -34,6 +34,15 @@ public class Agenzia {
 	public String getNumeroTelefono() {
 		return numeroTelefono;
 	}
+	
+	public void addImmobile(Immobile i){
+		if(i!=null)
+		{
+			immobili.addElement(i);
+		}
+		else
+			throw new IllegalArgumentException("Immobile=null");
+	}
 
 
 	public Vector<Immobile> getImmobili() {
@@ -79,6 +88,13 @@ public class Agenzia {
 		}
 		return guadagnoTotale;
 		
+	}
+
+
+	@Override
+	public String toString() {
+		return "Agenzia [nome=" + nome + ", numeroTelefono=" + numeroTelefono
+				+ ", immobili=" + immobili + "]";
 	}
 
 }

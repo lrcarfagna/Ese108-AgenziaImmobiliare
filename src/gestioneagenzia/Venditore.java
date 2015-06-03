@@ -47,4 +47,11 @@ public class Venditore extends Cliente{
 	public Vector<Immobile> getImmobili() {
 		return immobili;
 	}
+
+	@Override
+	public String toString() {
+		return "Venditore [nome=" + nome + ", cognome=" + cognome
+				+ ", numeroCellulare=" + numeroCellulare + ", codiceFiscale="
+				+ codiceFiscale + "]";
+	}
 }
